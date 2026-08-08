@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madalitso Misoya - Request Portal</title>
+    <style>
+        :root {
+            --primary-red: #f40009;
+            --coca-dark: #cc0000;
+            --bg-dark: #121212;
+            --surface-dark: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #b0b0b0;
+            --accent-green: #25d366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--surface-dark);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-red), var(--coca-dark));
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .content {
+            padding: 25px;
+        }
+
+        .card-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .item-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .item-price {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #ffc107;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary-red);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: white;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(244, 0, 9, 0.3);
+        }
+
+        .btn-whatsapp {
+            background: var(--accent-green);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .status-msg {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--accent-green);
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Madalitso Misoya</h1>
+            <p>Official Request Portal</p>
+        </div>
+
+        <div class="content">
+            <div class="card-section">
+                <div class="item-info">
+                    <h3>Bottle of Coca-Cola</h3>
+                    <p>Ice cold satisfaction</p>
+                </div>
+                <div class="item-price">Requested</div>
+            </div>
+
+            <div class="card-section">
+                <div class="item-info">
+                    <h3>Joy Contribution</h3>
+                    <p>Spreading good vibes</p>
+                </div>
+                <div class="item-price">100 MWK</div>
+            </div>
+
+            <div class="form-group">
+                <label for="donorName">Your Name / Well-wisher</label>
+                <input type="text" id="donorName" placeholder="Enter your name">
+            </div>
+
+            <button class="btn btn-primary" onclick="processFulfillment()">Fulfill Request</button>
+            <a id="whatsappBtn" href="#" class="btn btn-whatsapp" style="display: none;" target="_blank">Confirm via WhatsApp (+265 882 907 808)</a>
+
+            <div id="statusMessage" class="status-msg">Request successfully acknowledged! Thank you!</div>
+        </div>
+
+        <div class="footer">
+            Direct Line: +265 882 907 808
+        </div>
+    </div>
+
+    <script>
+        function processFulfillment() {
+            const nameInput = document.getElementById('donorName').value.trim();
+            const statusMsg = document.getElementById('statusMessage');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+
+            if (!nameInput) {
+                alert('Please enter your name first!');
+                document.getElementById('donorName').focus();
+                return;
+            }
+
+            // Simulate 100% functionality response feedback
+            statusMsg.style.display = 'block';
+            statusMsg.innerText = `Thank you, ${nameInput}! Your support for Madalitso Misoya has been logged.`;
+
+            // Setup WhatsApp direct connect link
+            const phoneNumber = "265882907808";
+            const message = encodeURIComponent(`Hello Madalitso, I am ${nameInput} and I would love to fulfill your request for a bottle of Coca-Cola and 100 Kwacha joy!`);
+            whatsappBtn.href = `https://wa.me/${phoneNumber}?text=${message}`;
+            whatsappBtn.style.display = 'inline-block';
+        }
+    </script>
+</body>
+</html>
